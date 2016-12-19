@@ -44,7 +44,7 @@ class GitRecipe(object):
         if os.path.exists(self.repo_path) and os.path.exists(os.path.join(self.repo_path, '.git')):
             os.chdir(self.repo_path)
             origin = self.git('remote', ['show', 'origin'], quiet=False)
-            existing_repository = re.findall('^\s*Fetch URL:\s*(.*)$', origin, flags=re.MULTILINE)[0]
+            existing_repository = re.findall(b'^\s*Fetch URL:\s*(.*)$', origin, flags=re.MULTILINE)[0]
 
         os.chdir(old_cwd)
         if existing_repository == self.url:
